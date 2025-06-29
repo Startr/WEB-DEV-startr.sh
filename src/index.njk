@@ -301,8 +301,10 @@ PROJECTPATH="$(git rev-parse --show-toplevel)"
 PROJECT=$(echo ${PROJECTPATH##*/} | awk '{print tolower($0)}')
 # Set FULL_BRANCH to the name of the current Git branch
 FULL_BRANCH=$(git rev-parse --abbrev-ref HEAD)
-# Set BRANCH to the lowercase version of this name, with everything after the last forward slash removed
+# remove everything after the last forward slash removed
 BRANCH=${FULL_BRANCH##*/}
+# Make BRANCH lowercase using bash parameter expansion
+BRANCH="${BRANCH,,}"
 # Set TAG to the output of the git describe --always --tag command, which returns a "unique identifier" for the current commit
 TAG=$(git describe --always --tag)
 
@@ -349,7 +351,7 @@ echo -e "${BLUE}docker tag startr/$PROJECT-$BRANCH:$TAG startr/$PROJECT-$BRANCH:
 if [ "$JOB" == "build" ] || [ "$JOB" == "build_and_run" ]; then
     echo -e "${YELLOW}${BUILD_EMOJI} Building Docker image...${NC}"
     # ... (the docker build command remains unchanged) ...
-    if docker build $PLATFORM_ARG $BUILD_ARG \
+    if docker build --load $PLATFORM_ARG $BUILD_ARG \
       -f $DOCKERFILE \
       -t startr/$PROJECT-$BRANCH:$TAG \
       -t startr/$PROJECT-$BRANCH:$FLATPLATFORM \
