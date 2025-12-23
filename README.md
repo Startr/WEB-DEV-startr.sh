@@ -101,7 +101,7 @@ Extrapolating on its potential uses, the versatility of this command becomes app
 
 6. **Update Management**: The command could potentially fetch and apply updates for existing projects, ensuring that developers always work with the latest tools and libraries.
 
-However, it's essential to exercise caution when running commands fetched from the internet. Trusting the source is crucial, as executing arbitrary code can potentially expose your system to security risks. Startr.sh seems to be a service that aims to simplify development setup, but one should always verify the integrity and safety of the script before execution.
+Just remember, it's essential to exercise caution when running commands fetched from the internet. Trusting the source is crucial, as executing arbitrary code can potentially expose your system to security risks. We made Startr.sh as a service that aims to simplify development setup, but one should always verify the integrity and safety of the script before execution. :D
 
 
 # Get involved with the development
